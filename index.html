@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>EcoBricks Pvt. Ltd. — Thermobriquettes</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --forest: #1a3d1f;
+    --deep: #0f2412;
+    --leaf: #2d6a35;
+    --sage: #4a7c52;
+    --cream: #f5f0e8;
+    --warm: #ede8d8;
+    --gold: #c8a96e;
+    --text: #1a1a18;
+    --muted: #6b6b5e;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(15,36,18,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,169,110,0.2);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600;
+    color: var(--cream); letter-spacing: 0.05em;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: rgba(245,240,232,0.75); text-decoration: none;
+    font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--deep);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 8rem 4rem 4rem;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(45,106,53,0.25) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(200,169,110,0.1) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(rgba(245,240,232,1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,240,232,1) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 700px; }
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 0.4rem 1rem; margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300; line-height: 0.95;
+    color: var(--cream); margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  .hero-title em { color: var(--gold); font-style: italic; }
+  .hero-subtitle {
+    font-size: 1rem; line-height: 1.7;
+    color: rgba(245,240,232,0.6); max-width: 480px;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--deep);
+    padding: 0.9rem 2.2rem; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; display: inline-block;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-primary:hover { background: #e0c080; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--cream);
+    padding: 0.9rem 2.2rem; border: 1px solid rgba(245,240,232,0.3);
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; display: inline-block;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats {
+    position: absolute; right: 4rem; bottom: 4rem;
+    display: flex; gap: 3rem; z-index: 2;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 600; color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(245,240,232,0.5); margin-top: 0.3rem;
+  }
+
+  /* ── SECTIONS SHARED ── */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 400; line-height: 1.1; margin-bottom: 1.5rem;
+  }
+  .section-body {
+    font-size: 0.95rem; line-height: 1.8; color: var(--muted);
+    max-width: 560px;
+  }
+
+  /* ── PROBLEM STRIP ── */
+  #problem {
+    background: var(--forest);
+    padding: 5rem 4rem;
+  }
+  .problem-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center;
+  }
+  .problem-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300; color: var(--cream); line-height: 1.15;
+  }
+  .problem-title em { color: var(--gold); font-style: italic; }
+  .problem-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .pcard {
+    background: rgba(245,240,232,0.06);
+    border: 1px solid rgba(245,240,232,0.1);
+    padding: 1.4rem; border-radius: 2px;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .pcard:hover {
+    background: rgba(200,169,110,0.1);
+    border-color: rgba(200,169,110,0.3);
+  }
+  .pcard-icon { font-size: 1.5rem; margin-bottom: 0.6rem; }
+  .pcard-title { font-size: 0.8rem; font-weight: 500; color: var(--cream); margin-bottom: 0.3rem; letter-spacing: 0.05em; }
+  .pcard-text { font-size: 0.75rem; color: rgba(245,240,232,0.5); line-height: 1.6; }
+
+  /* ── PRODUCT ── */
+  #product { background: var(--cream); }
+  .product-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+  }
+  .product-visual {
+    background: var(--forest);
+    aspect-ratio: 4/5; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .product-visual-inner {
+    text-align: center; padding: 3rem;
+  }
+  .big-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12rem; font-weight: 700;
+    color: rgba(200,169,110,0.15); line-height: 1;
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .product-badge {
+    position: absolute; bottom: 2rem; right: 2rem;
+    background: var(--gold); color: var(--deep);
+    padding: 1rem 1.4rem; text-align: center;
+  }
+  .product-badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 700; line-height: 1;
+  }
+  .product-badge-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; color: var(--cream); position: relative; z-index: 1;
+  }
+  .product-tagline { font-size: 0.75rem; color: rgba(245,240,232,0.5); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 0.5rem; }
+  .features-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+  .feature-item {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    padding-bottom: 1rem; border-bottom: 1px solid rgba(26,61,31,0.1);
+  }
+  .feature-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; color: var(--gold); min-width: 2rem;
+  }
+  .feature-text h4 { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.2rem; }
+  .feature-text p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── ENV ANALYSIS ── */
+  #analysis { background: var(--warm); }
+  .analysis-tabs { display: flex; gap: 0; margin-bottom: 3rem; border-bottom: 2px solid rgba(26,61,31,0.15); }
+  .tab-btn {
+    background: none; border: none; cursor: pointer;
+    padding: 0.8rem 1.8rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); border-bottom: 2px solid transparent;
+    margin-bottom: -2px; transition: color 0.3s, border-color 0.3s;
+  }
+  .tab-btn.active { color: var(--forest); border-bottom-color: var(--forest); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
+
+  /* SWOT */
+  .swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .swot-card { padding: 2rem; }
+  .swot-card.s { background: var(--forest); color: var(--cream); }
+  .swot-card.w { background: #8b6914; color: var(--cream); }
+  .swot-card.o { background: #2d5a6b; color: var(--cream); }
+  .swot-card.t { background: #6b2d2d; color: var(--cream); }
+  .swot-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem; font-weight: 700; opacity: 0.2; line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .swot-card h3 { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem; opacity: 0.7; }
+  .swot-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .swot-card ul li { font-size: 0.82rem; line-height: 1.5; opacity: 0.9; padding-left: 1rem; position: relative; }
+  .swot-card ul li::before { content: '→'; position: absolute; left: 0; opacity: 0.5; }
+
+  /* PESTEL */
+  .pestel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  .pestel-card {
+    background: white; padding: 1.8rem;
+    border-top: 3px solid var(--forest);
+  }
+  .pestel-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; color: var(--gold); line-height: 1; margin-bottom: 0.3rem;
+  }
+  .pestel-card h3 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; }
+  .pestel-card p { font-size: 0.8rem; line-height: 1.6; color: var(--text); }
+
+  /* BCG */
+  .bcg-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 2px solid var(--forest); }
+  .bcg-cell {
+    padding: 2rem; border: 1px solid rgba(26,61,31,0.2);
+    position: relative;
+  }
+  .bcg-cell.star { background: rgba(45,106,53,0.08); }
+  .bcg-cell.question { background: rgba(200,169,110,0.08); }
+  .bcg-cell.cow { background: rgba(45,90,107,0.08); }
+  .bcg-cell.dog { background: rgba(107,45,45,0.08); }
+  .bcg-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .bcg-cell h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .bcg-cell p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+  .bcg-label { position: absolute; top: 0.8rem; right: 0.8rem; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  /* ── MARKETING MIX ── */
+  #mix { background: var(--deep); }
+  #mix .section-title { color: var(--cream); }
+  #mix .section-label { color: var(--gold); }
+  .mix-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(245,240,232,0.1); margin-top: 3rem; }
+  .mix-card {
+    background: var(--deep); padding: 2.5rem 2rem;
+    transition: background 0.4s;
+    cursor: default;
+  }
+  .mix-card:hover { background: rgba(45,106,53,0.2); }
+  .mix-p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; font-weight: 700; color: var(--gold);
+    opacity: 0.2; line-height: 1; margin-bottom: 0.5rem;
+  }
+  .mix-card h3 { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .mix-card p { font-size: 0.82rem; line-height: 1.7; color: rgba(245,240,232,0.6); }
+
+  /* ── DEMAND ── */
+  #demand { background: var(--warm); }
+  .demand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3rem; }
+  .demand-bars { display: flex; flex-direction: column; gap: 1.5rem; }
+  .bar-row { }
+  .bar-label { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+  .bar-label span { font-size: 0.8rem; }
+  .bar-label .bar-val { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--forest); font-weight: 600; }
+  .bar-track { height: 8px; background: rgba(26,61,31,0.1); border-radius: 0; overflow: hidden; }
+  .bar-fill {
+    height: 100%; background: var(--forest);
+    border-radius: 0; width: 0;
+    transition: width 1.5s cubic-bezier(0.4,0,0.2,1);
+  }
+  .demand-insights { display: flex; flex-direction: column; gap: 1.5rem; }
+  .insight-card {
+    border-left: 3px solid var(--gold);
+    padding: 1.2rem 1.5rem;
+    background: white;
+  }
+  .insight-card h4 { font-size: 0.85rem; font-weight: 500; margin-bottom: 0.3rem; }
+  .insight-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── SUSTAINABILITY ── */
+  #sustainability { background: var(--forest); }
+  #sustainability .section-title { color: var(--cream); }
+  #sustainability .section-label { color: var(--gold); }
+  .sdg-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .sdg-card {
+    padding: 2rem 1.5rem; text-align: center;
+    border: 1px solid rgba(245,240,232,0.1);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .sdg-card:hover { border-color: var(--gold); background: rgba(200,169,110,0.05); }
+  .sdg-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .sdg-num { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.4rem; }
+  .sdg-card h3 { font-size: 0.85rem; color: var(--cream); margin-bottom: 0.5rem; }
+  .sdg-card p { font-size: 0.75rem; color: rgba(245,240,232,0.5); line-height: 1.6; }
+
+  /* ── TEAM ── */
+  #team { background: var(--cream); }
+  .team-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .team-card {
+    text-align: center; padding: 2rem 1rem;
+    border: 1px solid rgba(26,61,31,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .team-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .team-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: var(--forest); margin: 0 auto 1rem;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; color: var(--gold); font-weight: 600;
+  }
+  .team-card h4 { font-size: 0.85rem; font-weight: 500; margin-bottom: 0.2rem; }
+  .team-card p { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    padding: 3rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(200,169,110,0.2);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; color: var(--cream);
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-copy { font-size: 0.75rem; color: rgba(245,240,232,0.3); }
+  .footer-tag {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid rgba(200,169,110,0.3);
+    padding: 0.4rem 0.8rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── CALCULATOR ── */
+  #calculator { background: var(--deep); padding: 7rem 4rem; }
+  #calculator .section-label { color: var(--gold); }
+  #calculator .section-title { color: var(--cream); }
+  .calc-intro { font-size: 0.95rem; color: rgba(245,240,232,0.55); line-height: 1.8; max-width: 620px; margin-bottom: 3rem; }
+  .calc-box {
+    background: rgba(245,240,232,0.04);
+    border: 1px solid rgba(200,169,110,0.25);
+    padding: 3rem; margin-bottom: 3rem;
+    display: flex; gap: 3rem; align-items: flex-end; flex-wrap: wrap;
+  }
+  .calc-input-group { display: flex; flex-direction: column; gap: 0.6rem; flex: 1; min-width: 220px; }
+  .calc-input-group label {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .calc-input-group input {
+    background: rgba(245,240,232,0.07);
+    border: 1px solid rgba(200,169,110,0.3);
+    color: var(--cream); font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; padding: 0.7rem 1.2rem; width: 100%;
+    outline: none; transition: border-color 0.3s;
+  }
+  .calc-input-group input:focus { border-color: var(--gold); }
+  .calc-input-group input::placeholder { color: rgba(245,240,232,0.2); font-size: 1.6rem; }
+  .calc-btn {
+    background: var(--gold); color: var(--deep);
+    border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 1.05rem 2.5rem; white-space: nowrap;
+    transition: background 0.3s, transform 0.2s;
+    align-self: flex-end;
+  }
+  .calc-btn:hover { background: #e0c080; transform: translateY(-2px); }
+  .calc-note { font-size: 0.72rem; color: rgba(245,240,232,0.3); margin-top: 0.5rem; }
+
+  /* Results */
+  .calc-results { display: none; }
+  .calc-results.show { display: block; animation: fadeUp 0.5s ease both; }
+  .results-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    color: var(--cream); margin-bottom: 2.5rem; line-height: 1.4;
+  }
+  .results-headline span { color: var(--gold); }
+  .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
+  .fuel-card {
+    border: 1px solid rgba(245,240,232,0.1);
+    padding: 2rem 1.5rem; position: relative;
+    transition: border-color 0.3s;
+  }
+  .fuel-card:hover { border-color: rgba(200,169,110,0.4); }
+  .fuel-card.thermo {
+    border-color: var(--gold);
+    background: rgba(200,169,110,0.07);
+  }
+  .fuel-tag {
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 0.3rem 0.7rem; margin-bottom: 1.2rem; display: inline-block;
+  }
+  .fuel-card.thermo .fuel-tag { background: var(--gold); color: var(--deep); }
+  .fuel-card:not(.thermo) .fuel-tag { background: rgba(107,45,45,0.4); color: rgba(245,240,232,0.7); }
+  .fuel-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--cream); margin-bottom: 0.3rem; }
+  .fuel-cost-label { font-size: 0.7rem; color: rgba(245,240,232,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.2rem; margin-top: 1rem; }
+  .fuel-cost-val { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--cream); }
+  .fuel-cost-val.highlight { color: var(--gold); }
+  .fuel-saving-box {
+    margin-top: 1.2rem; padding: 0.8rem 1rem;
+    background: rgba(45,106,53,0.2); border-left: 2px solid var(--leaf);
+  }
+  .fuel-saving-box .save-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,240,232,0.5); margin-bottom: 0.2rem; }
+  .fuel-saving-box .save-val { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #7ec97f; }
+
+  /* ENV comparison */
+  .env-strip {
+    border: 1px solid rgba(200,169,110,0.2);
+    padding: 2rem 2.5rem; margin-top: 2rem;
+  }
+  .env-strip h3 {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+  }
+  .env-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .env-col { }
+  .env-col-label { font-size: 0.72rem; color: rgba(245,240,232,0.4); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(245,240,232,0.08); }
+  .env-metric { margin-bottom: 1rem; }
+  .env-metric-name { font-size: 0.75rem; color: rgba(245,240,232,0.55); margin-bottom: 0.2rem; }
+  .env-metric-val { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; }
+  .env-metric-val.bad { color: #e07070; }
+  .env-metric-val.good { color: #7ec97f; }
+  .env-saved-bar { margin-top: 1.5rem; }
+  .env-saved-bar-label { display: flex; justify-content: space-between; font-size: 0.72rem; color: rgba(245,240,232,0.4); margin-bottom: 0.4rem; }
+  .env-saved-bar-track { height: 6px; background: rgba(245,240,232,0.1); }
+  .env-saved-bar-fill { height: 100%; background: var(--leaf); transition: width 1.2s ease; width: 0; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--deep); }
+  ::-webkit-scrollbar-thumb { background: var(--sage); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 2rem; }
+    #hero { padding: 7rem 2rem 3rem; }
+    .hero-stats { display: none; }
+    .problem-inner, .product-inner, .demand-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .mix-grid { grid-template-columns: 1fr 1fr; }
+    .sdg-grid, .pestel-grid { grid-template-columns: 1fr 1fr; }
+    .team-grid { grid-template-columns: repeat(3, 1fr); }
+    .stp-flow { flex-direction: column; }
+    .stp-arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Eco<span>Bricks</span> Pvt. Ltd.</div>
+  <ul class="nav-links">
+    <li><a href="#calculator">Savings Calculator</a></li>
+    <li><a href="#product">Product</a></li>
+    <li><a href="#analysis">Analysis</a></li>
+    <li><a href="#mix">Strategy</a></li>
+
+    <li><a href="#demand">Demand</a></li>
+    <li><a href="#sustainability">Sustainability</a></li>
+    <li><a href="#team">Team</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">ESG Report 2030 · Group 11</div>
+    <h1 class="hero-title">Thermo<em>briquettes</em></h1>
+    <p class="hero-subtitle">Engineered biomass fuel for India's industrial sector. Cleaner, cheaper, and fully compliant — converting agricultural waste into high-performance thermal energy.</p>
+    <div class="hero-ctas">
+      <a href="#product" class="btn-primary">Explore the Product</a>
+      <a href="#analysis" class="btn-outline">View Analysis</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">40%</div>
+      <div class="stat-label">Cost Reduction</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">60%</div>
+      <div class="stat-label">Emission Reduction</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3K</div>
+      <div class="stat-label">Tons / Month Target</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="problem-inner">
+    <div class="reveal">
+      <p class="section-label" style="color:rgba(200,169,110,0.7)">The Market Problem</p>
+      <h2 class="problem-title">India's industries are <em>burning the wrong fuel</em></h2>
+      <p style="color:rgba(245,240,232,0.55); font-size:0.9rem; line-height:1.8; margin-top:1.5rem; max-width:400px;">Coal, LPG, and furnace oil are rising in cost, tightening in regulation, and devastating in emissions. A better solution exists — it's been growing in India's fields all along.</p>
+    </div>
+    <div class="problem-cards reveal">
+      <div class="pcard"><div class="pcard-icon">📈</div><div class="pcard-title">Rising Fuel Costs</div><div class="pcard-text">Coal up 40% in 5 years. LPG volatile and unsubsidized.</div></div>
+      <div class="pcard"><div class="pcard-icon">⚖️</div><div class="pcard-title">Strict Regulations</div><div class="pcard-text">CPCB/NCAP norms making traditional fuels non-compliant.</div></div>
+      <div class="pcard"><div class="pcard-icon">🌫️</div><div class="pcard-title">High Emissions</div><div class="pcard-text">CO₂, particulates, and harmful gases from fossil fuels.</div></div>
+      <div class="pcard"><div class="pcard-icon">🌾</div><div class="pcard-title">Wasted Biomass</div><div class="pcard-text">500M+ tonnes of agri-residue burnt in fields yearly.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SAVINGS CALCULATOR -->
+<section id="calculator">
+  <p class="section-label reveal">Need Analysis</p>
+  <h2 class="section-title reveal">Interactive Savings <em style="font-style:italic;color:var(--gold)">Calculator</em></h2>
+  <p class="calc-intro reveal">As part of the Need Analysis, we have made this interactive savings calculator. Enter the quantity of Thermobriquettes you wish to use, and instantly see how much your industry saves — in money and in environmental impact — compared to coal, furnace oil, and LPG.</p>
+
+  <div class="calc-box reveal">
+    <div class="calc-input-group">
+      <label>Tonnes of Thermobriquettes</label>
+      <input type="number" id="tonnes-input" placeholder="e.g. 100" min="1" max="100000"/>
+      <span class="calc-note">Enter monthly or annual tonnage — your choice</span>
+    </div>
+    <button class="calc-btn" onclick="runCalc()">Calculate Savings →</button>
+  </div>
+
+  <div class="calc-results" id="calc-results">
+    <p class="results-headline reveal" id="results-headline"></p>
+
+    <!-- Cost Cards -->
+    <div class="results-grid" id="results-grid">
+      <!-- filled by JS -->
+    </div>
+
+    <!-- Environmental Comparison -->
+    <div class="env-strip reveal">
+      <h3>🌍 Environmental Impact Comparison — per your input quantity</h3>
+      <div class="env-grid" id="env-grid">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT -->
+<section id="product">
+  <div class="product-inner">
+    <div class="product-visual reveal">
+      <div class="big-letter">T</div>
+      <div class="product-visual-inner">
+        <div class="product-name">Thermo<br/>briquettes</div>
+        <div class="product-tagline">High-Density Biomass Fuel</div>
+      </div>
+      <div class="product-badge">
+        <div class="product-badge-num">&lt;2%</div>
+        <div class="product-badge-label">Rejection Rate</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="section-label">Our Flagship Product</p>
+      <h2 class="section-title">Engineered for industrial <em style="font-style:italic; color:var(--leaf)">performance</em></h2>
+      <p class="section-body">Thermobriquettes are high-density biomass fuel units produced from sugarcane bagasse, rice husk, and lignocellulosic agricultural waste — processed through advanced densification for consistent calorific output, low ash, and reliable combustion.</p>
+      <div class="features-list">
+        <div class="feature-item">
+          <div class="feature-num">01</div>
+          <div class="feature-text"><h4>Controlled Densification Process</h4><p>Moisture regulation, particle size standardization, and high-pressure compaction for uniform burn characteristics.</p></div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">02</div>
+          <div class="feature-text"><h4>Drop-in Industrial Compatibility</h4><p>Designed for boilers, furnaces, kilns, dryers, and steam generation with minimal infrastructure changes.</p></div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">03</div>
+          <div class="feature-text"><h4>Circular Economy Sourcing</h4><p>Procured from farmers and FPOs — converting waste that would otherwise be burnt in fields into premium fuel.</p></div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">04</div>
+          <div class="feature-text"><h4>ESG & Compliance Ready</h4><p>Verified CO₂ reduction reports, green certifications, and eligibility for carbon credits.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENVIRONMENTAL ANALYSIS -->
+<section id="analysis">
+  <p class="section-label reveal">Environmental Analysis</p>
+  <h2 class="section-title reveal">Understanding the <em style="font-style:italic; color:var(--leaf)">market landscape</em></h2>
+  <div class="analysis-tabs reveal">
+    <button class="tab-btn active" onclick="switchTab('swot', this)">SWOT</button>
+    <button class="tab-btn" onclick="switchTab('pestel', this)">PESTEL</button>
+    <button class="tab-btn" onclick="switchTab('bcg', this)">BCG Matrix</button>
+    <button class="tab-btn" onclick="switchTab('micro', this)">Microenvironment</button>
+  </div>
+
+  <!-- SWOT -->
+  <div class="tab-content active" id="tab-swot">
+    <div class="swot-grid">
+      <div class="swot-card s">
+        <div class="swot-letter">S</div>
+        <h3>Strengths</h3>
+        <ul>
+          <li>Cost-efficient alternative to fossil fuels</li>
+          <li>Low-emission, ESG-aligned fuel profile</li>
+          <li>Utilizes abundant agri-residue supply</li>
+          <li>Modular, scalable production model</li>
+        </ul>
+      </div>
+      <div class="swot-card w">
+        <div class="swot-letter">W</div>
+        <h3>Weaknesses</h3>
+        <ul>
+          <li>Lower energy density compared to coal</li>
+          <li>Dependence on seasonal agri-waste supply cycles</li>
+          <li>Requires consistent moisture management</li>
+        </ul>
+      </div>
+      <div class="swot-card o">
+        <div class="swot-letter">O</div>
+        <h3>Opportunities</h3>
+        <ul>
+          <li>Rising environmental regulations favouring biomass</li>
+          <li>Increasing ESG mandates across industry</li>
+          <li>Government push for biomass energy adoption</li>
+          <li>Untapped demand across India's SME sector</li>
+        </ul>
+      </div>
+      <div class="swot-card t">
+        <div class="swot-letter">T</div>
+        <h3>Threats</h3>
+        <ul>
+          <li>Coal price fluctuations affecting cost advantage</li>
+          <li>Emergence of alternative clean fuels</li>
+          <li>Storage risks for bulk biomass inventory</li>
+          <li>Potential policy shifts in energy regulations</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PESTEL -->
+  <div class="tab-content" id="tab-pestel">
+    <div class="pestel-grid">
+      <div class="pestel-card"><div class="pestel-letter">P</div><h3>Political</h3><p>Strong government support for biomass energy. Policy alignment with stubble burning reduction programs and national renewable energy targets.</p></div>
+      <div class="pestel-card"><div class="pestel-letter">E</div><h3>Economic</h3><p>Volatile fossil fuel prices create cost-advantage windows. Industrial sector actively seeking cost-stable thermal energy alternatives.</p></div>
+      <div class="pestel-card"><div class="pestel-letter">S</div><h3>Social</h3><p>Rising environmental awareness among industries. Positive rural impact via farmer income from agri-residue procurement.</p></div>
+      <div class="pestel-card"><div class="pestel-letter">T</div><h3>Technological</h3><p>Advancements in densification and briquetting technology. Continuous need for quality standardization and process innovation.</p></div>
+      <div class="pestel-card"><div class="pestel-letter">E</div><h3>Environmental</h3><p>Significant CO₂ and particulate emission reductions. Mitigates open-field burning of agricultural waste across India.</p></div>
+      <div class="pestel-card"><div class="pestel-letter">L</div><h3>Legal</h3><p>Tightening industrial emission norms (CPCB/NCAP). Potential eligibility for carbon credits and official green certifications.</p></div>
+    </div>
+  </div>
+
+  <!-- BCG -->
+  <div class="tab-content" id="tab-bcg">
+    <div class="bcg-wrap">
+      <div class="bcg-cell star">
+        <div class="bcg-icon">⭐</div>
+        <div class="bcg-label">High Growth · High Share</div>
+        <h3>Star — Thermobriquettes</h3>
+        <p>Core product with rapidly growing clean fuel demand and strong cost advantage. Primary investment and growth focus for EcoBricks.</p>
+      </div>
+      <div class="bcg-cell question">
+        <div class="bcg-icon">❓</div>
+        <div class="bcg-label">High Growth · Low Share</div>
+        <h3>Question Mark — Premium Blends</h3>
+        <p>Premium-grade briquettes and customized industrial blends. Emerging demand but limited current market penetration.</p>
+      </div>
+      <div class="bcg-cell cow">
+        <div class="bcg-icon">🐄</div>
+        <div class="bcg-label">Low Growth · High Share</div>
+        <h3>Cash Cow — Long-term Contracts</h3>
+        <p>Long-term industrial supply contracts delivering stable, recurring demand from converted clients. Consistent revenue stream.</p>
+      </div>
+      <div class="bcg-cell dog">
+        <div class="bcg-icon">🐕</div>
+        <div class="bcg-label">Low Growth · Low Share</div>
+        <h3>Dog — Raw Agri-waste Resale</h3>
+        <p>Unprocessed raw agri-waste resale and low-grade fuel. Low margin, non-differentiated segment. Consider phasing out.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MICRO -->
+  <div class="tab-content" id="tab-micro">
+    <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:1.5rem;">
+      <div style="background:white; padding:1.8rem; border-top:3px solid var(--forest);">
+        <div style="font-size:1.5rem; margin-bottom:0.8rem;">🏭</div>
+        <h4 style="font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem;">Customers</h4>
+        <p style="font-size:0.82rem; line-height:1.7;">SMEs in brick kilns, food processing, textiles, ceramics, and small manufacturing units requiring reliable thermal energy.</p>
+      </div>
+      <div style="background:white; padding:1.8rem; border-top:3px solid var(--gold);">
+        <div style="font-size:1.5rem; margin-bottom:0.8rem;">🌾</div>
+        <h4 style="font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem;">Suppliers</h4>
+        <p style="font-size:0.82rem; line-height:1.7;">Farmers, FPOs, agri-aggregators, and sugar mills providing bagasse, husk, and straw at stable prices.</p>
+      </div>
+      <div style="background:white; padding:1.8rem; border-top:3px solid #6b2d2d;">
+        <div style="font-size:1.5rem; margin-bottom:0.8rem;">⚔️</div>
+        <h4 style="font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem;">Competitors</h4>
+        <p style="font-size:0.82rem; line-height:1.7;"><strong>Direct:</strong> Local briquette & pellet manufacturers.<br/><strong>Indirect:</strong> Coal, firewood, LPG, PNG, bio-CNG suppliers.</p>
+      </div>
+      <div style="background:white; padding:1.8rem; border-top:3px solid #2d5a6b;">
+        <div style="font-size:1.5rem; margin-bottom:0.8rem;">🚚</div>
+        <h4 style="font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem;">Intermediaries</h4>
+        <p style="font-size:0.82rem; line-height:1.7;">Local fuel distributors, transporters, and warehouse operators forming the decentralized distribution network.</p>
+      </div>
+      <div style="background:white; padding:1.8rem; border-top:3px solid var(--sage);">
+        <div style="font-size:1.5rem; margin-bottom:0.8rem;">⚖️</div>
+        <h4 style="font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem;">Regulatory Bodies</h4>
+        <p style="font-size:0.82rem; line-height:1.7;">Pollution Control Boards, MSME associations, and energy regulators shaping compliance frameworks.</p>
+      </div>
+      <div style="background:white; padding:1.8rem; border-top:3px solid var(--muted);">
+        <div style="font-size:1.5rem; margin-bottom:0.8rem;">🤝</div>
+        <h4 style="font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem;">Public & Stakeholders</h4>
+        <p style="font-size:0.82rem; line-height:1.7;">Local communities, environmental groups, and ESG investors — positive brand perception due to waste reduction and lower emissions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETING MIX -->
+<section id="mix">
+  <p class="section-label">Marketing Mix</p>
+  <h2 class="section-title reveal">The 4P + 3P <em style="font-style:italic; color:var(--gold)">framework</em></h2>
+  <div class="mix-grid reveal">
+    <div class="mix-card">
+      <div class="mix-p">P</div>
+      <h3>Product</h3>
+      <p>High-performance biomass briquettes engineered from sugarcane bagasse. Features high densification, &lt;2% rejection rate, and consistent moisture control for industrial reliability.</p>
+    </div>
+    <div class="mix-card">
+      <div class="mix-p">P</div>
+      <h3>Price</h3>
+      <p>Targeted 10–25% cost savings over coal and LPG. Competitive cost per thermal unit protects industrial margins from volatile fossil fuel prices.</p>
+    </div>
+    <div class="mix-card">
+      <div class="mix-p">P</div>
+      <h3>Place</h3>
+      <p>Decentralized local fuel ecosystem targeting industrial clusters in textiles, brick kilns, and food processing via local transporters and warehouse operators.</p>
+    </div>
+    <div class="mix-card">
+      <div class="mix-p">P</div>
+      <h3>Promotion</h3>
+      <p>Positioned as the "Clean Thermal Energy Partner" for ESG compliance. B2B outreach via pilot conversions to prove efficiency to industrial buyers.</p>
+    </div>
+  </div>
+  <div class="mix-grid reveal" style="margin-top:1px;">
+    <div class="mix-card">
+      <div class="mix-p">P</div>
+      <h3>People</h3>
+      <p>Direct farmer and FPO partnerships for raw material sourcing. Technical teams provide expert guidance for seamless industrial boiler conversions.</p>
+    </div>
+    <div class="mix-card">
+      <div class="mix-p">P</div>
+      <h3>Process</h3>
+      <p>Circular waste-to-energy model: residue collection → advanced densification → standardized quality testing. Streamlined onboarding via 20+ pilot projects.</p>
+    </div>
+    <div class="mix-card">
+      <div class="mix-p">P</div>
+      <h3>Physical Evidence</h3>
+      <p>High-density briquette product, verified CO₂ reduction reports (40–60% lower emissions), and official ESG/green certifications as tangible proof.</p>
+    </div>
+    <div class="mix-card" style="background:rgba(200,169,110,0.05);">
+      <div style="padding:1rem 0; text-align:center;">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--gold); line-height:1.5;">"Not just a fuel — a smart, sustainable energy solution."</p>
+        <p style="font-size:0.75rem; color:rgba(245,240,232,0.3); margin-top:1rem; letter-spacing:0.1em; text-transform:uppercase;">EcoBricks Mission Statement</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMAND ESTIMATION -->
+<section id="demand">
+  <p class="section-label reveal">Demand Estimation</p>
+  <h2 class="section-title reveal">A market primed for <em style="font-style:italic; color:var(--leaf)">explosive growth</em></h2>
+  <div class="demand-grid">
+    <div class="demand-bars reveal">
+      <p style="font-size:0.85rem; color:var(--muted); margin-bottom:2rem; line-height:1.7;">India's biomass briquette market is growing at 8–12% annually. Demand for Thermobriquettes is projected to increase 2–3x over the next 5 years.</p>
+      <div class="bar-row">
+        <div class="bar-label"><span>Year 1 — Market Entry</span><span class="bar-val">3,000 T/mo</span></div>
+        <div class="bar-track"><div class="bar-fill" data-width="30" style="background:var(--forest)"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span>Year 2 — Growth Phase</span><span class="bar-val">5,500 T/mo</span></div>
+        <div class="bar-track"><div class="bar-fill" data-width="55" style="background:var(--leaf)"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span>Year 3 — Scale Phase</span><span class="bar-val">8,000 T/mo</span></div>
+        <div class="bar-track"><div class="bar-fill" data-width="75" style="background:var(--sage)"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span>Year 5 — Maturity</span><span class="bar-val">12,000 T/mo</span></div>
+        <div class="bar-track"><div class="bar-fill" data-width="100" style="background:var(--gold)"></div></div>
+      </div>
+    </div>
+    <div class="demand-insights reveal">
+      <div class="insight-card">
+        <h4>📈 Industry Growth Rate</h4>
+        <p>Biomass briquette market in India growing at 8–12% per year, powered by industrial demand for low-cost renewable energy alternatives.</p>
+      </div>
+      <div class="insight-card">
+        <h4>🏭 Industrial Adoption Trends</h4>
+        <p>High-consumption sectors shifting to briquettes due to lower cost and easy compliance. Expected to accelerate as fossil fuel prices continue rising.</p>
+      </div>
+      <div class="insight-card">
+        <h4>🏛️ Government Push</h4>
+        <p>Restrictions on coal usage in non-attainment cities and active promotion of biomass usage creating a favourable expansion environment.</p>
+      </div>
+      <div class="insight-card">
+        <h4>🎯 Year 1 Objectives</h4>
+        <p>Reach 3,000 tons/month production capacity, conduct 25+ industrial trials, and build 50+ long-term industrial partnerships.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUSTAINABILITY -->
+<section id="sustainability">
+  <p class="section-label">Sustainability in Marketing</p>
+  <h2 class="section-title reveal">Aligned with India's <em style="font-style:italic; color:var(--gold)">net-zero future</em></h2>
+  <p class="section-body reveal" style="color:rgba(245,240,232,0.6)">Thermobriquettes don't just replace a fuel — they support a systemic shift toward sustainable industry, rural empowerment, and environmental responsibility.</p>
+  <div class="sdg-grid reveal">
+    <div class="sdg-card">
+      <div class="sdg-icon">⚡</div>
+      <div class="sdg-num">SDG 7</div>
+      <h3>Affordable & Clean Energy</h3>
+      <p>Delivering cost-efficient, renewable thermal energy to India's industrial sector.</p>
+    </div>
+    <div class="sdg-card">
+      <div class="sdg-icon">🌱</div>
+      <div class="sdg-num">SDG 12</div>
+      <h3>Responsible Consumption</h3>
+      <p>Converting agricultural waste into fuel through a circular economy model.</p>
+    </div>
+    <div class="sdg-card">
+      <div class="sdg-icon">🌍</div>
+      <div class="sdg-num">SDG 13</div>
+      <h3>Climate Action</h3>
+      <p>Reducing CO₂ emissions by 40–60% per industrial client, supporting India's carbon neutrality goals.</p>
+    </div>
+    <div class="sdg-card">
+      <div class="sdg-icon">🤝</div>
+      <div class="sdg-num">SDG 8</div>
+      <h3>Decent Work & Growth</h3>
+      <p>Creating rural income streams for farmers and FPOs through agri-residue procurement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <p class="section-label reveal">The Team</p>
+  <h2 class="section-title reveal">Group 11 — <em style="font-style:italic; color:var(--leaf)">Prepared for Dr. Kulwinder Kaur</em></h2>
+  <div class="team-grid reveal">
+    <div class="team-card">
+      <div class="team-avatar">AK</div>
+      <h4>Anurag Kumar</h4>
+      <p>IPM25024</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">AG</div>
+      <h4>Aryaman Gurha</h4>
+      <p>IPM25034</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">MG</div>
+      <h4>Mishika Goyal</h4>
+      <p>IPM25080</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">MT</div>
+      <h4>Mohi Tripathi</h4>
+      <p>IPM25084</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">TB</div>
+      <h4>Tanvi Bhusal</h4>
+      <p>IPM25136</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Eco<span>Bricks</span> Pvt. Ltd.</div>
+  <div class="footer-copy">© 2025 EcoBricks · Marketing Management I · Group Project</div>
+  <div class="footer-tag">Thermobriquettes</div>
+</footer>
+
+<script>
+  // ── SAVINGS CALCULATOR ──
+  // All figures per tonne of fuel equivalent (thermal basis)
+  // Thermobriquettes calorific value ~3,800 kcal/kg = 3,800,000 kcal/tonne
+  // Reference fuels adjusted to deliver same thermal output
+  const THERMO_CV = 3800;   // kcal/kg
+  const FUELS = [
+    {
+      id: 'thermo',
+      name: 'Thermobriquettes',
+      tag: 'Our Product',
+      cv: 3800,             // kcal/kg
+      pricePerTonne: 5500,  // INR/tonne
+      co2: 0.0,             // CO2 kg/tonne (net-zero biomass, carbon-neutral classification)
+      so2: 0.3,             // SO₂ kg/tonne
+      nox: 0.8,             // NOₓ kg/tonne
+      pm: 0.5,              // PM₂.₅ kg/tonne
+      aqiImpact: 'Minimal', // qualitative
+      thermo: true
+    },
+    {
+      id: 'coal',
+      name: 'Coal',
+      tag: 'Fossil Fuel',
+      cv: 5500,             // kcal/kg (higher CV — need less volume but costs more)
+      pricePerTonne: 9800,  // INR/tonne
+      co2: 2340,            // CO₂ kg/tonne (2.34 tonnes CO₂ per tonne coal)
+      so2: 8.5,             // SO₂ kg/tonne
+      nox: 4.2,             // NOₓ kg/tonne
+      pm: 6.8,              // PM₂.₅ kg/tonne
+    },
+    {
+      id: 'furnaceoil',
+      name: 'Furnace Oil',
+      tag: 'Fossil Fuel',
+      cv: 9800,             // kcal/kg
+      pricePerTonne: 54000, // INR/tonne
+      co2: 3175,            // CO₂ kg/tonne
+      so2: 18.0,
+      nox: 6.5,
+      pm: 3.2,
+    },
+    {
+      id: 'lgp',
+      name: 'LPG',
+      tag: 'Fossil Fuel',
+      cv: 11900,            // kcal/kg
+      pricePerTonne: 72000, // INR/tonne
+      co2: 2980,            // CO₂ kg/tonne
+      so2: 0.1,
+      nox: 3.8,
+      pm: 0.4,
+    }
+  ];
+
+  function fmt(n) {
+    if (n >= 10000000) return '₹' + (n/10000000).toFixed(2) + ' Cr';
+    if (n >= 100000)   return '₹' + (n/100000).toFixed(2) + ' L';
+    if (n >= 1000)     return '₹' + (n/1000).toFixed(1) + 'K';
+    return '₹' + Math.round(n).toLocaleString('en-IN');
+  }
+  function fmtNum(n, unit) {
+    if (n >= 1000) return (n/1000).toFixed(1) + 'K ' + unit;
+    return n.toFixed(1) + ' ' + unit;
+  }
+
+  function runCalc() {
+    const raw = parseFloat(document.getElementById('tonnes-input').value);
+    if (!raw || raw <= 0) {
+      alert('Please enter a valid number of tonnes.');
+      return;
+    }
+    const tonnes = raw;
+
+    // Thermal energy delivered by thermobriquettes (kcal)
+    const thermalKcal = tonnes * 1000 * THERMO_CV;
+
+    // For each fuel, calculate equivalent tonnes needed to deliver same thermal energy,
+    // then cost and emissions for that equivalent quantity
+    const thermo = FUELS[0];
+    const thermoCost = tonnes * thermo.pricePerTonne;
+
+    const results = FUELS.map(f => {
+      const equivTonnes = thermalKcal / (f.cv * 1000); // tonnes of that fuel needed
+      const cost = equivTonnes * f.pricePerTonne;
+      const co2kg = equivTonnes * f.co2;
+      const so2kg = equivTonnes * f.so2;
+      const noxkg = equivTonnes * f.nox;
+      const pmkg  = equivTonnes * f.pm;
+      const saving = cost - thermoCost;
+      return { ...f, equivTonnes, cost, co2kg, so2kg, noxkg, pmkg, saving };
+    });
+
+    const thermo_r = results[0];
+
+    // Build headline
+    const maxSaving = Math.max(...results.slice(1).map(r => r.saving));
+    document.getElementById('results-headline').innerHTML =
+      `For <span>${tonnes.toLocaleString('en-IN')} tonnes</span> of Thermobriquettes — your industry saves up to <span>${fmt(maxSaving)}</span> and avoids thousands of kg in harmful emissions.`;
+
+    // Build fuel cards
+    const grid = document.getElementById('results-grid');
+    grid.innerHTML = results.slice(1).map(r => `
+      <div class="fuel-card">
+        <span class="fuel-tag">${r.tag}</span>
+        <div class="fuel-name">${r.name}</div>
+        <div style="font-size:0.72rem;color:rgba(245,240,232,0.35);margin-top:0.3rem;">Equiv. ${r.equivTonnes.toFixed(1)} tonnes needed</div>
+        <div class="fuel-cost-label">Total Fuel Cost</div>
+        <div class="fuel-cost-val">${fmt(r.cost)}</div>
+        <div class="fuel-saving-box">
+          <div class="save-label">💰 You save with Thermobriquettes</div>
+          <div class="save-val">+ ${fmt(r.saving)}</div>
+        </div>
+      </div>
+    `).join('') +
+    `<div class="fuel-card thermo">
+      <span class="fuel-tag">Our Product</span>
+      <div class="fuel-name">Thermobriquettes</div>
+      <div style="font-size:0.72rem;color:rgba(245,240,232,0.5);margin-top:0.3rem;">${tonnes.toFixed(1)} tonnes used</div>
+      <div class="fuel-cost-label">Total Fuel Cost</div>
+      <div class="fuel-cost-val highlight">${fmt(thermoCost)}</div>
+      <div style="margin-top:1.2rem;font-size:0.78rem;color:rgba(245,240,232,0.55);line-height:1.6;">
+        ✅ Lowest cost per thermal unit<br/>
+        ✅ Carbon-neutral classification<br/>
+        ✅ ESG & CPCB compliant
+      </div>
+    </div>`;
+
+    // Build env grid
+    const envGrid = document.getElementById('env-grid');
+    const envMetrics = [
+      { key: 'co2kg',  label: 'CO₂ Emitted',  unit: 'kg', sdg: 'SDG 13 — Climate Action' },
+      { key: 'so2kg',  label: 'SO₂ Emitted',  unit: 'kg', sdg: 'SDG 3 — Good Health' },
+      { key: 'noxkg',  label: 'NOₓ Emitted',  unit: 'kg', sdg: 'SDG 11 — Clean Cities' },
+      { key: 'pmkg',   label: 'PM₂.₅ Emitted', unit: 'kg', sdg: 'SDG 3 — Good Health' },
+    ];
+
+    envGrid.innerHTML = results.slice(1).map(r => {
+      const rows = envMetrics.map(m => {
+        const thermoVal = thermo_r[m.key];
+        const fuelVal   = r[m.key];
+        const saved     = fuelVal - thermoVal;
+        const pct       = fuelVal > 0 ? Math.round((saved / fuelVal) * 100) : 0;
+        return `
+          <div class="env-metric">
+            <div class="env-metric-name">${m.label} <span style="font-size:0.65rem;opacity:0.5">(${m.sdg})</span></div>
+            <div style="display:flex;gap:1.5rem;align-items:baseline;margin-top:0.2rem;">
+              <div>
+                <div style="font-size:0.62rem;color:rgba(245,240,232,0.35);margin-bottom:0.1rem;">${r.name}</div>
+                <div class="env-metric-val bad">${fmtNum(fuelVal, m.unit)}</div>
+              </div>
+              <div style="color:rgba(245,240,232,0.2);font-size:0.8rem;">→</div>
+              <div>
+                <div style="font-size:0.62rem;color:rgba(245,240,232,0.35);margin-bottom:0.1rem;">Thermobriquettes</div>
+                <div class="env-metric-val good">${fmtNum(thermoVal, m.unit)}</div>
+              </div>
+            </div>
+            <div class="env-saved-bar" style="margin-top:0.6rem;">
+              <div class="env-saved-bar-label"><span>Emission reduction</span><span style="color:#7ec97f">${pct}% less</span></div>
+              <div class="env-saved-bar-track"><div class="env-saved-bar-fill" data-width="${pct}"></div></div>
+            </div>
+          </div>`;
+      }).join('');
+      return `<div class="env-col">
+        <div class="env-col-label">vs. ${r.name}</div>
+        ${rows}
+      </div>`;
+    }).join('');
+
+    // Show results
+    const resultsEl = document.getElementById('calc-results');
+    resultsEl.classList.add('show');
+    setTimeout(() => {
+      resultsEl.querySelectorAll('.env-saved-bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.width + '%';
+      });
+      resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+
+  // Allow Enter key
+  document.getElementById('tonnes-input') && document.getElementById('tonnes-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') runCalc();
+  });
+
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Animated bars
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const demandSection = document.getElementById('demand');
+  if (demandSection) barObserver.observe(demandSection);
+</script>
+</body>
+</html>
